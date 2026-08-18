@@ -16,4 +16,11 @@
 <h3><code>zohaib@github ~ $ whoami</code></h3>
 <img src="./info-card.svg" width="490" />
 
+<br><br>
+
+<h3><code>zohaib@github ~ $ ./links.sh</code></h3>
+<a href="https://zohaib9922.github.io/portfolio"><img src="./buttons/portfolio.svg" /></a>
+<a href="https://linkedin.com/in/zohaibhasann"><img src="./buttons/linkedin.svg" /></a>
+<a href="https://www.instagram.com/idk_zabii/"><img src="./buttons/instagram.svg" /></a>
+
 </div>
