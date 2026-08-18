@@ -1,0 +1,92 @@
+{
+  "username": "zohaib9922",
+  "generated_at": "2026-08-18T19:50:14.350994Z",
+  "repo_count": 38,
+  "languages": [
+    {
+      "language": "PHP",
+      "bytes": 508876224,
+      "pct": 58.1
+    },
+    {
+      "language": "JavaScript",
+      "bytes": 259122688,
+      "pct": 29.6
+    },
+    {
+      "language": "CSS",
+      "bytes": 82419415,
+      "pct": 9.4
+    },
+    {
+      "language": "SCSS",
+      "bytes": 10490015,
+      "pct": 1.2
+    },
+    {
+      "language": "TypeScript",
+      "bytes": 7006542,
+      "pct": 0.8
+    },
+    {
+      "language": "HTML",
+      "bytes": 6567162,
+      "pct": 0.7
+    },
+    {
+      "language": "Hack",
+      "bytes": 656263,
+      "pct": 0.1
+    },
+    {
+      "language": "Blade",
+      "bytes": 636189,
+      "pct": 0.1
+    },
+    {
+      "language": "Vue",
+      "bytes": 123003,
+      "pct": 0.0
+    },
+    {
+      "language": "Twig",
+      "bytes": 57919,
+      "pct": 0.0
+    },
+    {
+      "language": "Svelte",
+      "bytes": 45610,
+      "pct": 0.0
+    },
+    {
+      "language": "Less",
+      "bytes": 36900,
+      "pct": 0.0
+    },
+    {
+      "language": "Python",
+      "bytes": 29767,
+      "pct": 0.0
+    },
+    {
+      "language": "EJS",
+      "bytes": 3121,
+      "pct": 0.0
+    },
+    {
+      "language": "Motoko",
+      "bytes": 2538,
+      "pct": 0.0
+    },
+    {
+      "language": "Shell",
+      "bytes": 2336,
+      "pct": 0.0
+    },
+    {
+      "language": "Makefile",
+      "bytes": 285,
+      "pct": 0.0
+    }
+  ]
+}

@@ -23,7 +23,13 @@ jobs:
         env:
           GITHUB_USERNAME: zohaib9922
       - run: python scripts/render_heatmap_svg.py
+      - run: python scripts/fetch_languages.py
+        env:
+          GITHUB_USERNAME: zohaib9922
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: python scripts/render_stack_svg.py
+      - run: python scripts/render_activity_svg.py
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: refresh contribution graph [skip ci]"
-          file_pattern: "data/contributions.json contrib-heatmap.svg"
+          file_pattern: "data/contributions.json data/languages.json contrib-heatmap.svg stack-chart.svg activity-chart.svg"

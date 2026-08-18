@@ -132,7 +132,26 @@ def build_svg(data: dict) -> str:
 
     style_rules = [
         "@keyframes boxIn { from { opacity: 0; transform: translateY(-6px); } "
-        "to { opacity: 1; transform: translateY(0); } }"
+        "to { opacity: 1; transform: translateY(0); } }",
+        "@keyframes glowSettle { 0% { filter: url(#neon-glow-hot); } "
+        "100% { filter: url(#neon-glow); } }",
+        ".glow-box { animation-name: boxIn, glowSettle; "
+        "animation-duration: var(--dur), 1.1s; "
+        "animation-timing-function: ease-out, ease-out; "
+        "animation-delay: var(--delay), var(--delay); "
+        "animation-fill-mode: forwards, forwards; }",
+    ]
+    defs = [
+        # Two-stage glow: a hot bloom that settles down to a soft neon
+        # halo, so active boxes read as "lit up" without a looping pulse.
+        '<filter id="neon-glow-hot" x="-150%" y="-150%" width="400%" height="400%">'
+        '<feGaussianBlur stdDeviation="3.2" result="blur"/>'
+        '<feMerge><feMergeNode in="blur"/><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>'
+        '</filter>',
+        '<filter id="neon-glow" x="-150%" y="-150%" width="400%" height="400%">'
+        '<feGaussianBlur stdDeviation="1.1" result="blur"/>'
+        '<feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>'
+        '</filter>',
     ]
     body = []
 
@@ -160,10 +179,18 @@ def build_svg(data: dict) -> str:
 
             box_id = f"box-{week_idx}-{row_idx}"
             delay = round((week_idx + row_idx) * STAGGER_UNIT, 3)
-            style_rules.append(
-                f'#{box_id} {{ opacity: 0; '
-                f'animation: boxIn {BOX_DURATION}s ease-out {delay}s forwards; }}'
-            )
+            is_hot = level >= 3
+            box_class = "glow-box" if is_hot else ""
+
+            if is_hot:
+                style_rules.append(
+                    f'#{box_id} {{ opacity: 0; --delay: {delay}s; --dur: {BOX_DURATION}s; }}'
+                )
+            else:
+                style_rules.append(
+                    f'#{box_id} {{ opacity: 0; '
+                    f'animation: boxIn {BOX_DURATION}s ease-out {delay}s forwards; }}'
+                )
 
             title = ""
             if day is not None:
@@ -171,8 +198,9 @@ def build_svg(data: dict) -> str:
                 date_str = day["date"][:10]
                 title = f'{count} contribution{"s" if count != 1 else ""} on {date_str}'
 
+            class_attr = f' class="{box_class}"' if box_class else ""
             body.append(
-                f'<rect id="{box_id}" x="{x}" y="{y}" width="{BOX}" height="{BOX}" '
+                f'<rect id="{box_id}"{class_attr} x="{x}" y="{y}" width="{BOX}" height="{BOX}" '
                 f'rx="2" ry="2" fill="{color}">'
                 + (f'<title>{xml_escape(title)}</title>' if title else "")
                 + '</rect>'
@@ -216,6 +244,7 @@ def build_svg(data: dict) -> str:
     svg = (
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" '
         f'width="{width}" height="{height}">'
+        f'<defs>{"".join(defs)}</defs>'
         f'{style_block}'
         f'<rect width="100%" height="100%" fill="none" />'
         f'{"".join(body)}'

@@ -18,6 +18,15 @@
 
 <br><br>
 
+<table>
+  <tr>
+    <td valign="top"><img src="./stack-chart.svg" width="420" /></td>
+    <td valign="top"><img src="./activity-chart.svg" width="420" /></td>
+  </tr>
+</table>
+
+<br>
+
 <h3><code>zohaib@github ~ $ ./links.sh</code></h3>
 <a href="https://zohaib9922.github.io/portfolio"><img src="./buttons/portfolio.svg" /></a>
 <a href="https://linkedin.com/in/zohaibhasann"><img src="./buttons/linkedin.svg" /></a>
